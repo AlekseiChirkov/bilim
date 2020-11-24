@@ -1,14 +1,14 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 
 from .models import *
 from .serializers import PostSerializer
+
+
 # Create your views here.
 
 
-class PostListView(APIView):
-
-    def get(self, request):
-        posts = Post.objects.filter(default=False)
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data)
+class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
+    queryset = Post.objects.filter(published=True)
+    serializer_class = PostSerializer
