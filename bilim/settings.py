@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-from decouple import config
+import dj_database_url
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production!a
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
@@ -33,12 +34,19 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # apps
+
+
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # django rest framework
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
